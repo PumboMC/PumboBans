@@ -31,6 +31,11 @@ Bans, mutes, warnings and kicks for Pumpkin servers, with a full history of ever
 
 Add `-s` to punish silently and `-f` for players who never joined. `/pb help` shows every command you may use. `/pb` is short for `/pumbobans`. Permissions are named `pumbobans:<name>` and default to operators.
 
+## Screenshots
+
+![/pb help, page 1](assets/market/help-1.webp)
+![/pb help, page 2](assets/market/help-2.webp)
+
 ## Installation
 
 Drop the file into `plugins/` and start the server. The config is created in `plugins/data/pumbobans/`. To take over the server's existing bans, run `/pb import vanilla`. Works with Pumpkin 0.2.0 (Minecraft 26.3).
