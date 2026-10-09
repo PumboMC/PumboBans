@@ -68,17 +68,17 @@ The punishment rules live in one shared core. You pick the build that fits your 
 
 | Build | File | Where it goes | What is different |
 | --- | --- | --- | --- |
-| 🌐 **PumboProx** (whole network) | `pumbo-bans.wasm` | `plugins/` of the proxy | One database for every server. Banned players are refused at the proxy, and a ban disconnects a player from any server. |
-| 🎃 **Pumpkin** (one server) | `PumboBans-26.3.wasm` or `PumboBans-26.2.wasm` | `plugins/` of the server | Bans, mutes and history for that server. `/ban`, `/kick` and `/banlist` replace the server's own commands. |
+| 🌐 **PumboProx** (whole network) | `PumboBans-Proxy-<version>.wasm` | `plugins/` of the proxy | One database for every server. Banned players are refused at the proxy, and a ban disconnects a player from any server. |
+| 🎃 **Pumpkin** (one server) | `PumboBans-Pumpkin-26.3-<version>.wasm` or `PumboBans-Pumpkin-26.2-<version>.wasm` | `plugins/` of the server | Bans, mutes and history for that server. `/ban`, `/kick` and `/banlist` replace the server's own commands. |
 
 ## Installation
 
-> [!IMPORTANT]
-> Ready-made files come with release 0.1. Until then, [build from source](#building).
+> [!TIP]
+> Download the files from [Releases](https://github.com/PumboMC/PumboBans/releases/latest), or [build from source](#building).
 
 **On PumboProx**
 
-1. Put `pumbo-bans.wasm` into the proxy's `plugins/` folder.
+1. Put `PumboBans-Proxy-<version>.wasm` into the proxy's `plugins/` folder.
 2. Start the proxy. The first start creates `plugins/pumbo-bans/config.yml` with comments.
 3. Recommended in `pumboprox.yml`, so nobody joins while PumboBans is not running:
 
