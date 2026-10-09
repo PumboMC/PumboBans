@@ -34,7 +34,7 @@
 <p align="center"><b>Running more than one server?</b> <a href="https://github.com/PumboMC/PumboProx">PumboProx</a> is the proxy for Pumpkin networks, with plugins in WebAssembly.<br>PumboBans runs on it too: one ban covers the whole network, or just the server you name.</p>
 
 > [!NOTE]
-> PumboBans is in **beta** (0.1.0-beta.1). Try it on a test server before you put players on it.
+> PumboBans is in **beta** (0.1.1-beta.1). Try it on a test server before you put players on it.
 
 ## What it does
 
