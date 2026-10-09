@@ -2,7 +2,7 @@
 name = "pumbo-bans-pumpkin"
 description = "PumboBans for the Pumpkin Minecraft server: bans, mutes, warnings and kicks"
 # Product version of PumboBans (the core crates share the workspace version).
-version = "0.1.1-beta.1"
+version = "0.1.1-beta"
 edition.workspace = true
 license.workspace = true
 authors.workspace = true

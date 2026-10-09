@@ -1,6 +1,6 @@
 # Manifest of PumboBans for PumboProx (copy next to pumbo-bans.wasm in plugins/).
 id: pumbo-bans
-version: 0.1.1-beta.1
+version: 0.1.1-beta
 api: "0.1"
 events: [pre-login, login, server-connected, chat, backend-command, command, timer, service-call]
 short-name: bans
