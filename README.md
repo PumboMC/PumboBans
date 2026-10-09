@@ -150,7 +150,7 @@ Under `/pumbobans` and `/pb` some commands have other names too: `tban` (tempban
 
 Other permissions: `notify`, `notify.silent`, `notify.alts`, `viewips` (full addresses in `/alts`), `exempt.<ban|mute|warn|kick>`, `exempt.bypass` and `limit.<group>`, all under `pumbo.bans.`.
 
-On PumboProx every command also works as `/pumbo bans <command>` (`/pumbo bans` alone shows the help) and from the proxy console. On Pumpkin the permissions are named `pumbobans:<name>` (for example `pumbobans:ban`) and default to operators.
+On PumboProx every command also works from the proxy console. On Pumpkin the permissions are named `pumbobans:<name>` (for example `pumbobans:ban`) and default to operators.
 
 ## Works with other Pumbo plugins
 
