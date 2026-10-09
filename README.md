@@ -28,7 +28,13 @@
 ---
 
 > [!NOTE]
-> PumboBans is in **beta**. The first release (0.1) is not out yet. Try it on a test server before you put players on it.
+> PumboBans is in **beta** (0.1.0-beta.1). Try it on a test server before you put players on it.
+
+<p align="center">
+  <a href="https://github.com/PumboMC/PumboProx"><img src="assets/pumboprox.webp" alt="PumboProx: everything you need to run a network on Pumpkin" width="80%"></a>
+</p>
+
+<p align="center"><b>Running more than one server?</b> <a href="https://github.com/PumboMC/PumboProx">PumboProx</a> is the proxy for Pumpkin networks, with plugins in WebAssembly.<br>PumboBans runs on it too: one ban covers the whole network, or just the server you name.</p>
 
 ## What it does
 
