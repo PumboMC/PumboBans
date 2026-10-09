@@ -1,0 +1,139 @@
+# Komunikaty PumboBans (polski).
+# Odpowiedzi dostają prefiks wtyczki i kolor tonu (zielony sukces, czerwony błąd,
+# żółte ostrzeżenie, szara informacja), więc pisze się je bez nich. Komunikaty
+# o karach są szare i same kolorują wartości: nicki &c&o, czas &a&o, powód &e&o;
+# &r wraca do szarego. Powiadomienia mają dymek ze szczegółami i klik, który
+# wpisuje /pb history. Ekrany (ban, wyrzucenie) i linie list wyglądają tak, jak
+# tu zapisano. {nl} zaczyna nową linię. Pusta wartość wyłącza komunikat.
+
+# --- Ekrany ukaranego gracza (przy zamknięciu połączenia) ---------------------------
+screen-ban: "&c&lMasz bana na tym serwerze{nl}{nl}&7Powód: &f{reason}{nl}&7Nałożył: &f{operator}{nl}&7Pozostało: &f{remaining}{nl}&7Do: &f{expires}{nl}&7Numer kary: &f#{id}{appeal}"
+screen-ban-permanent: "&c&lMasz stałego bana na tym serwerze{nl}{nl}&7Powód: &f{reason}{nl}&7Nałożył: &f{operator}{nl}&7Numer kary: &f#{id}{appeal}"
+screen-appeal: "{nl}{nl}&7Odwołanie: &b{url}"
+screen-kick: "&cZostałeś wyrzucony z serwera{nl}{nl}&7Powód: &f{reason}{nl}&7Wyrzucił: &f{operator}"
+screen-unavailable: "&cWejście na serwer jest teraz niemożliwe{nl}{nl}&7Baza kar jest niedostępna. Spróbuj ponownie za chwilę."
+
+# --- Komunikaty dla ukaranego gracza --------------------------------------------------
+player-muted: "Masz wyciszenie do &a&o{expires}&r (pozostało: {remaining}). Powód: &e&o{reason}&r (#{id})"
+player-muted-permanent: "Masz wyciszenie &a&ona stałe&r. Powód: &e&o{reason}&r (#{id})"
+player-mute-notice: "&c&o{operator}&r wycisza cię{length}. Powód: &e&o{reason}&r (#{id})"
+player-unmuted: Wyciszenie zostało zdjęte.
+player-warned: "&c&o{operator}&r ostrzega cię. Powód: &e&o{reason}&r (#{id}, aktywne ostrzeżenia: {count})"
+
+# --- Powiadomienia dla obsługi -------------------------------------------------------
+notify-punish: "{silent}&c&o{operator}&r {action} &c&o{target}&r{length}, powód: &e&o{reason}&r ({kind} #{id})"
+reply-punish: "Ukarano &c&o{target}&r{length} ({kind} #{id})"
+notify-revoke: "{silent}&c&o{operator}&r zdejmuje karę nałożoną na &c&o{target}&r ({kind} #{id})"
+notify-escalation: "{silent}&c&o{target}&r osiąga limit ostrzeżeń ({count}): {kind}{length} (#{id})"
+notify-silent-tag: "&8[po cichu]&r "
+notify-alt-join: "&c&o{player}&r wchodzi z adresu, którego używało zbanowane konto: &c&o{accounts}&r"
+notify-hover: "&f{kind} #{id}{nl}&7Gracz: &f{target}{nl}&7Nałożył: &f{operator}{term}{nl}&7Serwer: &f{scope}{nl}&7Data: &f{date}{nl}&7Powód: &f{reason}{nl}&8Kliknij, żeby zobaczyć historię"
+hover-term: "{nl}&7Czas: &f{duration}{nl}&7Do: &f{expires}"
+scope-global: "wszystkie serwery"
+
+# --- Słowa wstawiane do innych komunikatów ---------------------------------------
+kind-ban: ban
+kind-tempban: ban czasowy
+kind-ipban: ban na IP
+kind-mute: wyciszenie
+kind-tempmute: wyciszenie czasowe
+kind-ipmute: wyciszenie na IP
+kind-warn: ostrzeżenie
+kind-kick: wyrzucenie
+action-ban: "banuje"
+action-ipban: "banuje IP"
+action-mute: "wycisza"
+action-ipmute: "wycisza IP"
+action-warn: "ostrzega"
+action-kick: "wyrzuca"
+length-for: ", czas: &a&o{length}&r"
+length-permanent: " &a&ona stałe&r"
+date-never: nigdy
+no-reason: Bez podanego powodu
+console-name: Konsola
+
+# --- Błędy ---------------------------------------------------------------------------
+error-db: Baza kar jest niedostępna; nic nie zostało zmienione.
+error-player-unknown: "{target} nigdy nie był na serwerze. Dodaj -f, żeby mimo to ukarać ten nick."
+error-unknown-names-disabled: "{target} nigdy nie był na serwerze."
+error-not-online: "{target} nie jest online."
+error-no-address: Nie znam adresu IP gracza {target}.
+error-reason-required: Podaj powód.
+error-unknown-template: "Nie ma szablonu {name}. Szablony: {list}"
+error-exempt: "{target} jest chroniony przed tą karą."
+error-self: Nie możesz ukarać samego siebie.
+error-already: "{target} ma już aktywną karę: {kind} (#{id}). Najpierw ją zdejmij."
+error-not-punished: "{target} nie ma aktywnej kary: {kind}."
+error-no-such-id: "Nie ma kary #{id}."
+error-limit: "Możesz dać karę ({kind}) najwyżej na: {limit}."
+error-busy: PumboBans jest zajęty, spróbuj ponownie.
+
+# --- Listy i sprawdzanie -------------------------------------------------------------
+history-header: Kary gracza {target} ({count}, strona {page}/{pages})
+history-line: "&8#{id} &7{kind} &8· &e&o{reason}&8 · &7{date} {status}"
+history-empty: "{target} nie ma żadnych kar."
+staffhistory-header: Kary nałożone przez {target} ({count}, strona {page}/{pages})
+status-active: "&c(aktywna, pozostało: {remaining})"
+status-active-permanent: "&c(aktywna, na stałe)"
+status-expired: "&8(wygasła)"
+status-revoked: "&a(zdjęta przez {by})"
+status-done: ""
+banlist-header: Aktywne bany ({count}, strona {page}/{pages})
+mutelist-header: Aktywne wyciszenia ({count}, strona {page}/{pages})
+warns-header: "Aktywne ostrzeżenia gracza {target}: {count}"
+list-line: "&8#{id} &c&o{target}&8 · &e&o{reason}&8 · &a&o{remaining}"
+list-empty: Nic do pokazania.
+list-previous: Poprzednia strona
+list-next: Następna strona
+check-ban: "&c&o{target}&r ma bana, pozostało: &a&o{remaining}&r. Powód: &e&o{reason}&r (#{id})"
+check-mute: "&c&o{target}&r ma wyciszenie, pozostało: &a&o{remaining}&r. Powód: &e&o{reason}&r (#{id})"
+check-warns: "{target}: aktywne ostrzeżenia: {count}"
+check-clean: "{target} nie ma aktywnego bana ani wyciszenia."
+alts-header: "Konta, które dzielą adres z {target}:"
+alts-line: "&f{name} &8({address}) {status}"
+alts-banned: "&c[ban]"
+alts-muted: "&e[wyciszony]"
+alts-none: Żadne inne konto nie dzieli adresu z {target}.
+info-line: "&8#{id} &7{kind} dla &c&o{target}&7, nałożył &c&o{operator}&7 dnia {date}, do: {expires}. Powód: &e&o{reason}&7 {status}"
+
+# --- Administracja -----------------------------------------------------------------
+admin-import-done: "Zaimportowano kar: {added}; pominięto: {skipped} (już są albo wygasły)."
+admin-import-failed: "Import nie powiódł się: {error}"
+admin-import-source: "Czytam listy banów serwera (gracze: {players}, adresy: {ips})..."
+admin-purge-done: "Usunięto adresy IP gracza {target}: {count}."
+admin-reload-warning: "{warning}"
+admin-database: Baza
+admin-database-ok: działa
+admin-database-down: niedostępna
+admin-active: Aktywne kary
+
+# --- Pomoc: krótkie opisy i szczegóły ------------------------------------------
+help-section: Admin
+help-ban: Ban gracza
+help-ban-details: "Bez czasu ban jest na stałe.{nl}#szablon wybiera powód i czas.{nl}-s: po cichu, -f: nick, którego nie było na serwerze.{nl}Przykład: /ban Steve 7d griefing"
+help-tempban: Ban gracza na czas
+help-ipban: Ban adresu IP
+help-ipban-details: Nick gracza banuje jego ostatni adres.{nl}Adresy IPv6 są banowane całą siecią /64.
+help-mute: Wyciszenie gracza
+help-tempmute: Wyciszenie gracza na czas
+help-ipmute: Wyciszenie adresu IP
+help-warn: Ostrzeżenie dla gracza
+help-warn-details: Po kilku aktywnych ostrzeżeniach przychodzi kara z sekcji [warnings] configu.
+help-kick: Wyrzucenie gracza
+help-unban: Zdjęcie bana
+help-unbanip: Zdjęcie bana na IP
+help-unmute: Zdjęcie wyciszenia
+help-unwarn: Zdjęcie ostrzeżenia
+help-history: Kary gracza albo adresu
+help-warns: Aktywne ostrzeżenia gracza
+help-banlist: Aktywne bany
+help-mutelist: Aktywne wyciszenia
+help-check: Czy gracz ma bana albo wyciszenie
+help-alts: Konta dzielące adres
+help-staffhistory: Kary nałożone przez obsługę
+help-info: Szczegóły jednej kary
+help-reload: Przeładowanie configu i komunikatów
+help-import: Import list banów serwera
+help-purge: Usunięcie adresów IP gracza
+help-purge-details: Na żądanie usunięcia danych (RODO).{nl}Same kary zostają.
+help-version: Wersja i stan bazy

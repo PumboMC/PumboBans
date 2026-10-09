@@ -1,0 +1,95 @@
+# Manifest of PumboBans for PumboProx (copy next to pumbo-bans.wasm in plugins/).
+id: pumbo-bans
+version: 0.1.0-beta.1
+api: "0.1"
+events: [pre-login, login, server-connected, chat, backend-command, command, timer, service-call]
+short-name: bans
+short-alias: pb             # /pb = /pumbobans
+# Every backend command reaches PumboBans: the commands a muted player may not
+# use are set in config.yml (mutes.blocked-commands), and PumboBans commands
+# that a backend also has arrive here when the client signs them.
+command-filter: ["*"]
+# Without an answer nobody joins (also the defaults); chat passes.
+on-failure: { pre-login: deny, login: deny, chat: allow, backend-command: allow }
+
+publishes: ["pumbo:player-punished@1.0", "pumbo:punishment-revoked@1.0"]
+# Other plugins ask and punish through this service (contract: pumbo_common::bans).
+provides:
+  - { service: "pumbobans:punish", version: "1.0", max-timeout-ms: 1000 }
+
+placeholders:
+  namespace: pumbobans
+  keys:
+    - { name: muted, scope: player, mode: push, public: true, fallback: "false" }
+
+permissions:
+  - node: pumbo.bans.ban
+    description: Ban players (/ban)
+  - node: pumbo.bans.tempban
+    description: Ban players for a time (/tempban)
+  - node: pumbo.bans.ipban
+    description: Ban IP addresses (/ipban)
+  - node: pumbo.bans.mute
+    description: Mute players (/mute)
+  - node: pumbo.bans.tempmute
+    description: Mute players for a time (/tempmute)
+  - node: pumbo.bans.ipmute
+    description: Mute IP addresses (/ipmute)
+  - node: pumbo.bans.warn
+    description: Warn players (/warn)
+  - node: pumbo.bans.kick
+    description: Kick players from the network (/kick)
+  - node: pumbo.bans.unban
+    description: Lift bans (/unban)
+  - node: pumbo.bans.unbanip
+    description: Lift IP bans (/unbanip)
+  - node: pumbo.bans.unmute
+    description: Lift mutes (/unmute)
+  - node: pumbo.bans.unwarn
+    description: Lift warnings (/unwarn)
+  - node: pumbo.bans.history
+    description: Punishment history and details (/history, /pumbobans info)
+  - node: pumbo.bans.warns
+    description: Active warnings of a player (/warns)
+  - node: pumbo.bans.banlist
+    description: Active bans (/banlist)
+  - node: pumbo.bans.mutelist
+    description: Active mutes (/mutelist)
+  - node: pumbo.bans.check
+    description: Whether a player is banned or muted (/checkban)
+  - node: pumbo.bans.alts
+    description: Accounts sharing an address (/alts)
+  - node: pumbo.bans.staffhistory
+    description: Punishments given by someone (/staffhistory)
+  - node: pumbo.bans.viewips
+    description: Full IP addresses in /alts
+  - node: pumbo.bans.notify
+    description: See punishments placed by staff
+  - node: pumbo.bans.notify.silent
+    description: See silent punishments too
+  - node: pumbo.bans.notify.alts
+    description: See when someone joins from a banned account's address
+  - node: pumbo.bans.exempt.ban
+    description: Cannot be banned
+  - node: pumbo.bans.exempt.mute
+    description: Cannot be muted
+  - node: pumbo.bans.exempt.warn
+    description: Cannot be warned
+  - node: pumbo.bans.exempt.kick
+    description: Cannot be kicked
+  - node: pumbo.bans.exempt.bypass
+    description: Punish players who are exempt
+  - node: pumbo.bans.admin.reload
+    description: Reload the config and messages
+  - node: pumbo.bans.admin.import
+    description: Import vanilla ban lists
+  - node: pumbo.bans.admin.purge
+    description: Forget the IP addresses of a player
+  - node: pumbo.bans.admin.version
+    description: Version of PumboBans
+  - node: pumbo.bans.reload
+    description: /pumbo bans reload
+  - node: pumbo.bans.version
+    description: /pumbo bans version
+  - node: pumbo.bans.debug
+    description: /pumbo bans debug

@@ -1,0 +1,35 @@
+[package]
+name = "pumbo-bans-pumpkin"
+description = "PumboBans for the Pumpkin Minecraft server: bans, mutes, warnings and kicks"
+# Product version of PumboBans (the core crates share the workspace version).
+version = "0.1.0-beta.1"
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+publish.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = ["mc263"]
+# Pumpkin 0.2.0 (Minecraft 26.3).
+mc263 = ["dep:api263"]
+# Pumpkin 0.1.0-dev (Minecraft 26.2).
+mc262 = ["dep:api262"]
+# Pumpkin built from source with the Pumbo hooks, built from a
+# manifest that is not published.
+mcgit = []
+
+[dependencies]
+pumbo-common.workspace = true
+pumbo-bans-core.workspace = true
+
+# The plugin API only exists inside the WebAssembly component; keeping it
+# target-specific lets `cargo test` check the rest natively.
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+api263 = { package = "pumpkin-plugin-api", version = "=0.2.0", optional = true }
+api262 = { package = "pumpkin-plugin-api", version = "=0.1.0-dev", optional = true }
+
+[lints]
+workspace = true

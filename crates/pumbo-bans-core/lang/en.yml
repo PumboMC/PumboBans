@@ -1,0 +1,140 @@
+# PumboBans messages (English).
+# Replies get the plugin prefix and the colour of their tone from the plugin
+# (green success, red error, yellow warning, grey information), so they are
+# written without either. Messages about a punishment are grey and colour their
+# values themselves: names &c&o, times &a&o, reasons &e&o; &r goes back to grey.
+# Notifications get a tooltip with the details and a click that types
+# /pb history. Screens (ban and kick) and list lines are shown as written.
+# {nl} starts a new line. An empty value disables a message.
+
+# --- Screens of the punished player (shown when the connection is closed) --------
+screen-ban: "&c&lYou are banned from this server{nl}{nl}&7Reason: &f{reason}{nl}&7Banned by: &f{operator}{nl}&7Time left: &f{remaining}{nl}&7Until: &f{expires}{nl}&7Punishment ID: &f#{id}{appeal}"
+screen-ban-permanent: "&c&lYou are permanently banned from this server{nl}{nl}&7Reason: &f{reason}{nl}&7Banned by: &f{operator}{nl}&7Punishment ID: &f#{id}{appeal}"
+screen-appeal: "{nl}{nl}&7Appeal: &b{url}"
+screen-kick: "&cYou were kicked from the server{nl}{nl}&7Reason: &f{reason}{nl}&7Kicked by: &f{operator}"
+screen-unavailable: "&cJoining is not possible right now{nl}{nl}&7The punishment database is unavailable. Please try again later."
+
+# --- Messages to the punished player ---------------------------------------------
+player-muted: "You are muted until &a&o{expires}&r ({remaining} left). Reason: &e&o{reason}&r (#{id})"
+player-muted-permanent: "You are muted &a&opermanently&r. Reason: &e&o{reason}&r (#{id})"
+player-mute-notice: "&c&o{operator}&r muted you{length}. Reason: &e&o{reason}&r (#{id})"
+player-unmuted: Your mute has been lifted.
+player-warned: "&c&o{operator}&r warned you. Reason: &e&o{reason}&r (#{id}, active warnings: {count})"
+
+# --- Staff notifications -------------------------------------------------------------
+notify-punish: "{silent}&c&o{operator}&r {action} &c&o{target}&r{length}: &e&o{reason}&r ({kind} #{id})"
+reply-punish: "Punished &c&o{target}&r{length} ({kind} #{id})"
+notify-revoke: "{silent}&c&o{operator}&r lifted a punishment of &c&o{target}&r ({kind} #{id})"
+notify-escalation: "{silent}Warning limit ({count}) reached by &c&o{target}&r: {kind}{length} (#{id})"
+notify-silent-tag: "&8[silent]&r "
+notify-alt-join: "&c&o{player}&r joined from an address used by banned &c&o{accounts}&r"
+notify-hover: "&f{kind} #{id}{nl}&7Player: &f{target}{nl}&7By: &f{operator}{term}{nl}&7Server: &f{scope}{nl}&7Given: &f{date}{nl}&7Reason: &f{reason}{nl}&8Click to show the history"
+hover-term: "{nl}&7Duration: &f{duration}{nl}&7Until: &f{expires}"
+scope-global: "all servers"
+
+# --- Words used inside other messages -------------------------------------------
+kind-ban: ban
+kind-tempban: temporary ban
+kind-ipban: IP ban
+kind-mute: mute
+kind-tempmute: temporary mute
+kind-ipmute: IP mute
+kind-warn: warning
+kind-kick: kick
+action-ban: "banned"
+action-ipban: "IP-banned"
+action-mute: "muted"
+action-ipmute: "IP-muted"
+action-warn: "warned"
+action-kick: "kicked"
+length-for: " for &a&o{length}&r"
+length-permanent: " &a&opermanently&r"
+date-never: never
+no-reason: No reason given
+console-name: Console
+
+# --- Errors ---------------------------------------------------------------------------
+error-db: The punishment database is unavailable; nothing was changed.
+error-player-unknown: "{target} has never joined this server. Add -f to punish the name anyway."
+error-unknown-names-disabled: "{target} has never joined this server."
+error-not-online: "{target} is not online."
+error-no-address: No IP address is known for {target}.
+error-reason-required: Please give a reason.
+error-unknown-template: "There is no template {name}. Templates: {list}"
+error-exempt: "{target} is protected from this punishment."
+error-self: You cannot punish yourself.
+error-already: "{target} already has an active {kind} (#{id}). Lift it first."
+error-not-punished: "{target} has no active {kind}."
+error-no-such-id: "There is no punishment #{id}."
+error-limit: You can give a {kind} of at most {limit}.
+error-busy: PumboBans is busy, please try again.
+
+# --- Lists and lookups -------------------------------------------------------------
+history-header: Punishments of {target} ({count}, page {page}/{pages})
+history-line: "&8#{id} &7{kind} &8· &e&o{reason}&8 · &7{date} {status}"
+history-empty: "{target} has no punishments."
+staffhistory-header: Punishments given by {target} ({count}, page {page}/{pages})
+status-active: "&c(active, {remaining} left)"
+status-active-permanent: "&c(active, permanent)"
+status-expired: "&8(expired)"
+status-revoked: "&a(lifted by {by})"
+status-done: ""
+banlist-header: Active bans ({count}, page {page}/{pages})
+mutelist-header: Active mutes ({count}, page {page}/{pages})
+warns-header: "Active warnings of {target}: {count}"
+list-line: "&8#{id} &c&o{target}&8 · &e&o{reason}&8 · &a&o{remaining}"
+list-empty: Nothing to show.
+list-previous: Previous page
+list-next: Next page
+check-ban: "&c&o{target}&r is banned, time left: &a&o{remaining}&r. Reason: &e&o{reason}&r (#{id})"
+check-mute: "&c&o{target}&r is muted, time left: &a&o{remaining}&r. Reason: &e&o{reason}&r (#{id})"
+check-warns: "{target}: active warnings: {count}"
+check-clean: "{target} has no active ban or mute."
+alts-header: "Accounts that share an address with {target}:"
+alts-line: "&f{name} &8({address}) {status}"
+alts-banned: "&c[banned]"
+alts-muted: "&e[muted]"
+alts-none: No other account shares an address with {target}.
+info-line: "&8#{id} &7{kind} of &c&o{target}&7 by &c&o{operator}&7 on {date}, until {expires}. Reason: &e&o{reason}&7 {status}"
+
+# --- Administration -----------------------------------------------------------------
+admin-import-done: Imported {added} punishments; skipped {skipped} (already present or expired).
+admin-import-failed: "Import failed: {error}"
+admin-import-source: Reading the server's ban lists ({players} players, {ips} addresses)...
+admin-purge-done: Forgot {count} IP addresses of {target}.
+admin-reload-warning: "{warning}"
+admin-database: Database
+admin-database-ok: ok
+admin-database-down: unavailable
+admin-active: Active punishments
+
+# --- Help: short descriptions and details --------------------------------------
+help-section: Admin
+help-ban: Ban a player
+help-ban-details: "Without a time the ban is permanent.{nl}#template picks reason and time.{nl}-s: silent, -f: a name that never joined.{nl}Example: /ban Steve 7d griefing"
+help-tempban: Ban a player for a time
+help-ipban: Ban an IP address
+help-ipban-details: A player name bans the player's last address.{nl}IPv6 addresses are banned by /64.
+help-mute: Mute a player
+help-tempmute: Mute a player for a time
+help-ipmute: Mute an IP address
+help-warn: Warn a player
+help-warn-details: Enough active warnings bring the punishment set in [warnings] of the config.
+help-kick: Kick a player
+help-unban: Lift a ban
+help-unbanip: Lift an IP ban
+help-unmute: Lift a mute
+help-unwarn: Lift a warning
+help-history: Punishments of a player or address
+help-warns: Active warnings of a player
+help-banlist: Active bans
+help-mutelist: Active mutes
+help-check: Is a player banned or muted
+help-alts: Accounts sharing an address
+help-staffhistory: Punishments given by staff
+help-info: One punishment in detail
+help-reload: Reload config and messages
+help-import: Import the server's ban lists
+help-purge: Forget a player's IP addresses
+help-purge-details: For data protection requests (GDPR).{nl}The punishments themselves stay.
+help-version: Version and database status

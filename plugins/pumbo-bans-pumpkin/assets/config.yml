@@ -1,0 +1,99 @@
+# ══════════════════════════════════════════════════════════════
+#  PumboBans · config.yml
+#  Apply changes:  /pumbobans reload  (PumboProx: /pumbo bans reload)
+#  Durations:      30m · 12h · 7d · 2w · 1mo · 1y · 1d12h · perm
+#  Full reference: README.md → Configuration
+# ══════════════════════════════════════════════════════════════
+
+language: en                 # en | pl  (files in lang/)
+per-player-language: true    # use the client's language when a file exists
+
+
+# ── IP punishments ────────────────────────────────────────────
+enforcement:
+  address-strictness: normal # lenient | normal | stern | strict
+  ipv4-prefix: 32            # 32 = one IPv4 address
+  ipv6-prefix: 64            # 64 = one home connection
+  fail-closed: true          # database down → nobody joins
+
+
+# ── Giving punishments ────────────────────────────────────────
+punishments:
+  require-reason: false      # refuse a punishment without a reason
+  allow-unknown-names: true  # /ban -f for names that never joined
+  allow-override: false      # banning a banned player replaces the ban
+  limits: []                 # max length per staff group, see README
+
+
+# ── Mutes ─────────────────────────────────────────────────────
+mutes:
+  blocked-commands:          # chat is always blocked
+    - msg
+    - tell
+    - w
+    - whisper
+    - me
+    - say
+    - r
+    - reply
+    - teammsg
+    - tm
+    - mail
+    - m
+    - pm
+    - dm
+
+
+# ── Warnings ──────────────────────────────────────────────────
+warnings:
+  duration: 30d              # how long a warning counts
+  repeat-highest: true       # past the last step, repeat it
+  escalation:                # count → action (ban | mute | kick)
+    - count: 3
+      action: mute
+      duration: 1h
+      reason: Too many warnings
+    - count: 5
+      action: ban
+      duration: 1d
+      reason: Too many warnings
+
+
+# ── Notifications ─────────────────────────────────────────────
+notifications:
+  console: true              # log every punishment
+  alt-join: true             # tell staff about alts of banned players
+  appeal-url: ""             # shown on the ban screen
+  timezone-offset-minutes: 0 # 120 = UTC+2
+
+
+# ── Privacy ───────────────────────────────────────────────────
+privacy:
+  address-retention-days: 180  # forget a player's IP after (0 = never)
+  record-refused-logins: true  # keep IPs of refused logins (ban evasion)
+
+
+# ── Commands ──────────────────────────────────────────────────
+commands:
+  disabled: []               # short commands to skip, e.g. [kick]
+  page-size: 8               # lines per page in lists
+
+
+# ── Other plugins ─────────────────────────────────────────────
+ipc:
+  allow-queries: true        # others may ask "is X banned?"
+  allow-punish: []           # plugins allowed to punish, e.g. [pumbo-filter]
+
+
+# ── Reason templates: /ban Steve #cheating ────────────────────
+# 1st, 2nd, 3rd… punishment with a template gets the next length
+templates:
+  - name: cheating
+    reason: Cheating
+    durations: [7d, 30d, perm]
+  - name: spam
+    reason: Spamming
+    durations: [30m, 2h, 1d]
+  - name: griefing
+    reason: Griefing
+    durations: [3d, 14d, perm]

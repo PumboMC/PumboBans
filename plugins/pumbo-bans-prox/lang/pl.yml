@@ -1,0 +1,5 @@
+# PumboBans na PumboProx: komunikaty warstwy platformy (polski).
+# Prefiks przed każdą odpowiedzią (standardowa postać wszystkich wtyczek Pumbo).
+prefix: "&#f28c28PumboBans &8» "
+# Wejście odrzucone, bo wtyczka była zajęta (trzeba wejść ponownie).
+kick-busy: "&cPumboBans jest zajęty, wejdź ponownie."

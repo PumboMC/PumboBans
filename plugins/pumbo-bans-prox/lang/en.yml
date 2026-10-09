@@ -1,0 +1,5 @@
+# PumboBans on PumboProx: messages of the platform layer (English).
+# The prefix in front of every reply (the standard form of all Pumbo plugins).
+prefix: "&#f28c28PumboBans &8» "
+# A login refused because the plugin was busy (join again).
+kick-busy: "&cPumboBans is busy, please join again."
