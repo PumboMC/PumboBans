@@ -240,7 +240,7 @@ pub fn run(engine: &mut Engine, args: &[String], ctx: &Ctx<'_>) -> Effects {
     let lang = engine.lang_for(ctx.sender.locale.as_deref()).clone();
     let t = tree();
     match t.dispatch(args, |node| ctx.sender.has(node)) {
-        Dispatch::Help => fx.reply(help(&lang, ctx.sender, pumbo_common::help::page_arg(args.get(1..).unwrap_or(&[])))),
+        Dispatch::Help => fx.reply(help(&lang, ctx.sender, pumbo_common::help::page_arg(args))),
         Dispatch::Unknown { name } => {
             // `/pumbobans 2` pages through the help.
             match name.parse::<usize>() {
@@ -1114,6 +1114,16 @@ mod tests {
         fx.0.iter()
             .find_map(|f| if let Effect::Notify { message, .. } = f { Some(message.plain()) } else { None })
             .unwrap()
+    }
+
+    #[test]
+    fn help_pages_follow_the_page_argument() {
+        let mut e = engine_with("");
+        let first = text(&exec(&mut e, &admin(), &[], "help", T0));
+        let second = text(&exec(&mut e, &admin(), &[], "help 2", T0));
+        assert!(first.contains("1/"), "{first}");
+        assert!(second.contains("2/"), "{second}");
+        assert_ne!(first, second);
     }
 
     #[test]
