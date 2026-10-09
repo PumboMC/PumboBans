@@ -2,7 +2,7 @@
 name = "pumbo-bans-prox"
 description = "PumboBans for the PumboProx proxy: bans, mutes, warnings and kicks for the whole network"
 # Product version of PumboBans on PumboProx (the core crates share the workspace version).
-version = "0.1.1-beta"
+version = "0.1.2-beta"
 edition.workspace = true
 license.workspace = true
 authors.workspace = true
