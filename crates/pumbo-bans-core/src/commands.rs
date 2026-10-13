@@ -1286,7 +1286,9 @@ mod tests {
         let fx = exec(&mut e, &admin(), &[], "version", T0);
         let t = text(&fx);
         assert!(
-            t.contains("PumboBans 0.1.0") && t.contains("Database: ok") && t.contains("Active punishments: 1"),
+            t.contains(concat!("PumboBans ", env!("CARGO_PKG_VERSION")))
+                && t.contains("Database: ok")
+                && t.contains("Active punishments: 1"),
             "{t}"
         );
         let fx = exec(&mut e, &admin(), &[], "reload", T0);
