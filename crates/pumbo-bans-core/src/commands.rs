@@ -228,7 +228,7 @@ impl Ctx<'_> {
 
 /// The help of PumboBans for the sender.
 pub fn help(lang: &Lang, sender: &Sender, page: usize) -> Text {
-    let help = Help::from_commands("PumboBans", &tree(), lang)
+    let help = Help::from_commands("PumboBans", style::accent::BANS, &tree(), lang)
         .version(env!("CARGO_PKG_VERSION"))
         .section(lang.get("help-section"));
     if sender.console { help.console(lang, |n| sender.has(n)) } else { help.chat(lang, page, |n| sender.has(n)) }
@@ -245,18 +245,18 @@ pub fn run(engine: &mut Engine, args: &[String], ctx: &Ctx<'_>) -> Effects {
             // `/pumbobans 2` pages through the help.
             match name.parse::<usize>() {
                 Ok(page) => fx.reply(help(&lang, ctx.sender, page)),
-                Err(_) => fx.reply(style::unknown_subcommand(&lang, &name, &t.help_line())),
+                Err(_) => fx.reply(style::unknown_subcommand(&lang, style::accent::BANS, &name, &t.help_line())),
             }
         }
         Dispatch::NoPermission { .. } => fx.reply(style::error(&lang, "command-no-permission", &Args::new())),
         Dispatch::Usage { .. } => {
             let first = args.first().map(|a| a.to_lowercase()).unwrap_or_default();
             if let Some(sub) = t.subs().iter().find(|s| s.name == first || s.aliases.contains(&first.as_str())) {
-                fx.reply(style::usage(&lang, &usage_line(&t, sub, ctx)));
+                fx.reply(style::usage(&lang, style::accent::BANS, &usage_line(&t, sub, ctx)));
             }
         }
         Dispatch::Run { sub, args: rest } => {
-            let usage = style::usage(&lang, &usage_line(&t, sub, ctx));
+            let usage = style::usage(&lang, style::accent::BANS, &usage_line(&t, sub, ctx));
             let mut c = Cmd { engine, lang: &lang, ctx, fx: &mut fx, usage };
             c.run(sub.handler, rest);
         }
@@ -368,7 +368,7 @@ impl Cmd<'_, '_> {
                     (self.lang.get("admin-database"), db),
                     (self.lang.get("admin-active"), style::number(self.lang, e.active_count(self.ctx.now) as u64)),
                 ];
-                self.fx.reply(style::version("PumboBans", env!("CARGO_PKG_VERSION"), rows));
+                self.fx.reply(style::version("PumboBans", style::accent::BANS, env!("CARGO_PKG_VERSION"), rows));
             }
         }
     }
@@ -1075,6 +1075,14 @@ mod tests {
     use crate::BansCfg;
     use crate::render::Langs;
     use crate::store::BansStore;
+
+    #[test]
+    fn pumpkin_list_has_every_bans_command() {
+        let names = [main_command(), ALIAS.to_string()].into_iter().chain(SHORTCUTS.iter().map(|(c, _)| c.to_string()));
+        for name in names {
+            assert_eq!(pumbo_common::pumpkin::pumbo_command_owner(&name), Some("PumboBans"), "{name}");
+        }
+    }
 
     const T0: u64 = 1_800_000_000_000;
     const ADMIN: Uuid = Uuid(1000);
