@@ -151,6 +151,21 @@ mod tests {
         Engine::new(cfg, Langs::single(lang), Ok(BansStore::in_memory()), "test").0
     }
 
+    #[test]
+    fn pumbo_nodes_cover_plugin_nodes() {
+        let e = engine("punishments:\n  limits:\n    - group: helper\n");
+        let mut nodes = crate::commands::permission_nodes(&e);
+        nodes.retain(|n| !n.contains(".limit."));
+        nodes.push(pumbo_common::command::permission(crate::ID, "command"));
+        let hosts: Vec<String> = nodes.iter().map(|n| n.replacen("pumbo.bans.", "pumbobans:", 1)).collect();
+        for host in &hosts {
+            assert!(pumbo_common::pumpkin::PUMBO_NODES.contains(&host.as_str()), "{host} missing from PUMBO_NODES");
+        }
+        for n in pumbo_common::pumpkin::PUMBO_NODES.iter().filter(|n| n.starts_with("pumbobans:")) {
+            assert!(hosts.iter().any(|h| h == n), "{n} in PUMBO_NODES is no node of the plugin");
+        }
+    }
+
     fn call(e: &mut Engine, from: &str, req: &str, online: &[Online]) -> (Value, Effects) {
         let (bytes, fx) = handle(e, from, req.as_bytes(), online, T0);
         (serde_json::from_slice(&bytes).unwrap(), fx)

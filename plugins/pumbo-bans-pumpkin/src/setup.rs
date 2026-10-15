@@ -123,7 +123,7 @@ mod tests {
         assert_eq!(check_bundle(&LANG), Vec::<String>::new());
         let (en, w) = Lang::load(&BUNDLES, "en", None);
         assert!(w.is_empty(), "{w:?}");
-        assert_eq!(en.get("prefix"), pumbo_common::style::prefix_code("PumboBans"));
+        assert_eq!(en.get("prefix"), pumbo_common::style::prefix_code("PumboBans", pumbo_common::style::accent::BANS));
         let reply = pumbo_common::style::error(&en, "error-db", &pumbo_common::text::Args::new());
         assert!(reply.plain().starts_with("PumboBans » The punishment database"), "{}", reply.plain());
     }
