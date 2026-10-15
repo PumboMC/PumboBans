@@ -168,7 +168,7 @@ impl PumboBans {
             log::error(&format!("PumboBans: {p}"));
         }
         let tree = cmds::tree();
-        let disabled = engine.cfg.commands.disabled.clone();
+        let disabled = engine.cfg.commands.names.disabled.clone();
         let mut roots = BTreeSet::new();
         for (name, sub) in shortcuts(&disabled) {
             let Some(s) = tree.subs().iter().find(|s| s.name == sub) else { continue };

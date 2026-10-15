@@ -93,7 +93,7 @@ impl Plugin for PumboBans {
             // Fail closed: without the database nobody gets in (unless configured otherwise).
             host::error(&format!("PumboBans: {p}"));
         }
-        let disabled = engine.cfg.commands.disabled.clone();
+        let disabled = engine.cfg.commands.names.disabled.clone();
         let mut nodes = permission_nodes(&engine);
         nodes.push(command_node());
         let active = engine.active_count(now_ms());

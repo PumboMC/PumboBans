@@ -3,7 +3,7 @@
 
 use std::time::Duration;
 
-use pumbo_common::config::{Check, Settings};
+use pumbo_common::config::{Check, Commands, Settings};
 use pumbo_common::time::{Term, parse_term};
 use serde::{Deserialize, Serialize};
 
@@ -147,8 +147,10 @@ pub struct PrivacyCfg {
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(default, rename_all = "kebab-case")]
 pub struct CommandsCfg {
-    /// Short commands not to register (e.g. `kick` to keep the server's own).
-    pub disabled: Vec<String>,
+    /// `disabled`: short commands not to register (e.g. `kick` to keep the
+    /// server's own). PumboBans has no `aliases`: `/pb` comes with the plugin.
+    #[serde(flatten)]
+    pub names: Commands,
     /// Entries per page in lists.
     pub page_size: u32,
 }
@@ -250,7 +252,7 @@ impl Default for PrivacyCfg {
 
 impl Default for CommandsCfg {
     fn default() -> Self {
-        Self { disabled: Vec::new(), page_size: 8 }
+        Self { names: Commands::default(), page_size: 8 }
     }
 }
 
@@ -323,9 +325,8 @@ impl Settings for BansCfg {
         for c in &mut self.mutes.blocked_commands {
             *c = c.trim().trim_start_matches('/').to_lowercase();
         }
-        for c in &mut self.commands.disabled {
-            *c = c.trim().trim_start_matches('/').to_lowercase();
-        }
+        self.commands.names.validate(check);
+        check.ensure("commands.aliases", &mut self.commands.names.aliases, Vec::new(), Vec::is_empty);
         self.ipc.allow_punish.iter_mut().for_each(|p| *p = p.trim().to_lowercase());
     }
 }
