@@ -19,6 +19,7 @@
 <p align="center">
   <a href="#features">Features</a> ·
   <a href="#two-builds">Two builds</a> ·
+  <a href="#pumpkin-versions">Pumpkin versions</a> ·
   <a href="#installation">Installation</a> ·
   <a href="#configuration">Configuration</a> ·
   <a href="#commands-and-permissions">Commands</a> ·
@@ -69,7 +70,17 @@ The punishment rules live in one shared core. You pick the build that fits your 
 | Build | File | Where it goes | What is different |
 | --- | --- | --- | --- |
 | 🌐 **PumboProx** (whole network) | `PumboBans-Proxy-<version>.wasm` | `plugins/` of the proxy | One database for every server. Banned players are refused at the proxy, and a ban disconnects a player from any server. |
-| 🎃 **Pumpkin** (one server) | `PumboBans-Pumpkin-26.3-<version>.wasm` (Pumpkin 0.2.1), `PumboBans-Pumpkin-0.2.0-<version>.wasm` or `PumboBans-Pumpkin-26.2-<version>.wasm` | `plugins/` of the server | Bans, mutes and history for that server. `/ban`, `/kick` and `/banlist` replace the server's own commands. |
+| 🎃 **Pumpkin** (one server) | `PumboBans-Pumpkin-…-<version>.wasm`, one per [Pumpkin version](#pumpkin-versions) | `plugins/` of the server | Bans, mutes and history for that server. `/ban`, `/kick` and `/banlist` replace the server's own commands. |
+
+## Pumpkin versions
+
+Each Pumpkin release loads only its own file:
+
+- Pumpkin 0.2.1+26.3-26.51: `PumboBans-Pumpkin-26.3-<version>.wasm`, or the file on the Pumpkin market
+- Pumpkin 0.2.0+26.3-26.51: `PumboBans-Pumpkin-0.2.0-<version>.wasm`
+- Pumpkin 0.1.0-dev+26.2-26.45: `PumboBans-Pumpkin-26.2-<version>.wasm`
+
+The files are in the [latest release](https://github.com/PumboMC/PumboBans/releases/latest).
 
 ## Installation
 
