@@ -19,7 +19,7 @@ pub mod setup;
 compile_error!("enable exactly one of the features `mc263`, `mc262` and `mcgit`");
 #[cfg(all(target_arch = "wasm32", not(any(feature = "mc263", feature = "mc262", feature = "mcgit"))))]
 compile_error!(
-    "enable one of the features `mc263` (Pumpkin 0.2.0), `mc262` (Pumpkin 0.1.0-dev) or `mcgit` (Pumpkin with the Pumbo hooks)"
+    "enable one of the features `mc263` (Pumpkin 0.2.1 or 0.2.0), `mc262` (Pumpkin 0.1.0-dev) or `mcgit` (Pumpkin with the Pumbo hooks)"
 );
 
 #[cfg(all(target_arch = "wasm32", feature = "mc262", not(feature = "mc263"), not(feature = "mcgit")))]

@@ -1,5 +1,5 @@
 //! Thin helpers over the Pumpkin plugin API (the same calls exist in Pumpkin
-//! 0.2.0, 0.1.0-dev and the source build with the Pumbo hooks), and carrying
+//! 0.2.1, 0.2.0, 0.1.0-dev and the source build with the Pumbo hooks), and carrying
 //! out the core's effects.
 
 use pumbo_bans_core::commands::Online;
@@ -26,13 +26,6 @@ pub use crate::papi::text::TextComponent;
 pub use crate::papi::{Context, Player, Plugin, PluginMetadata, Server, permissions, register_plugin};
 
 use crate::setup::pumpkin_node;
-
-#[cfg(feature = "mc263")]
-pub const API_LABEL: &str = "Pumpkin 0.2.0 / MC 26.3";
-#[cfg(feature = "mc262")]
-pub const API_LABEL: &str = "Pumpkin 0.1.0-dev / MC 26.2";
-#[cfg(feature = "mcgit")]
-pub const API_LABEL: &str = "Pumpkin source build with the Pumbo hooks (pumbo/all) / MC 26.3";
 
 thread_local! {
     /// The server handle from `on_load`, for calls that do not get one

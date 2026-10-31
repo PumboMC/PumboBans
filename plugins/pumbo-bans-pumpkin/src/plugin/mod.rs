@@ -88,7 +88,7 @@ impl Plugin for PumboBans {
             host::warn(&format!("PumboBans: config: {w}"));
         }
         let store = Store::open(format!("{dir}/{}.redb", pumbo_bans_core::ID)).and_then(BansStore::new);
-        let (engine, problems) = Engine::new(cfg, langs, store, host::API_LABEL);
+        let (engine, problems) = Engine::new(cfg, langs, store, &setup::api_label());
         for p in &problems {
             // Fail closed: without the database nobody gets in (unless configured otherwise).
             host::error(&format!("PumboBans: {p}"));
@@ -166,7 +166,7 @@ impl Plugin for PumboBans {
         host::info(&format!(
             "PumboBans {} loaded for {} ({active} active punishments, commands /{main} and {} short ones)",
             env!("CARGO_PKG_VERSION"),
-            host::API_LABEL,
+            setup::api_label(),
             shortcuts(&disabled).len()
         ));
         Ok(())

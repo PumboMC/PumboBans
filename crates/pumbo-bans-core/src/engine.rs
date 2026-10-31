@@ -186,7 +186,7 @@ pub struct Engine {
     active: BTreeMap<u64, Punishment>,
     /// Why the store is missing, for `/pumbobans version` and logs.
     pub storage_error: Option<String>,
-    /// Human-readable platform, e.g. "Pumpkin 0.2.0 / MC 26.3".
+    /// Human-readable platform, e.g. "Pumpkin 0.2.1 / MC 26.3".
     pub platform: String,
 }
 

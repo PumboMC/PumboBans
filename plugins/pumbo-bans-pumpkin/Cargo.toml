@@ -13,7 +13,7 @@ crate-type = ["cdylib", "rlib"]
 
 [features]
 default = ["mc263"]
-# Pumpkin 0.2.0 (Minecraft 26.3).
+# Pumpkin 0.2.1 and 0.2.0 (Minecraft 26.3).
 mc263 = ["dep:api263"]
 # Pumpkin 0.1.0-dev (Minecraft 26.2).
 mc262 = ["dep:api262"]
@@ -28,7 +28,7 @@ pumbo-bans-core.workspace = true
 # The plugin API only exists inside the WebAssembly component; keeping it
 # target-specific lets `cargo test` check the rest natively.
 [target.'cfg(target_arch = "wasm32")'.dependencies]
-api263 = { package = "pumpkin-plugin-api", version = "=0.2.0", optional = true }
+api263 = { package = "pumpkin-plugin-api", version = ">=0.2.0, <0.2.2", optional = true }
 api262 = { package = "pumpkin-plugin-api", version = "=0.1.0-dev", optional = true }
 
 [lints]

@@ -13,6 +13,22 @@ use pumbo_common::lang::{Bundle, COMMON, Lang};
 /// recipient name other plugins send messages to.
 pub const PLUGIN_NAME: &str = "pumbobans";
 
+/// The server this build is for, shown in the load line and `/pumbobans version`.
+/// The `mc263` build is for Pumpkin 0.2.1; build.sh sets `PUMBO_PUMPKIN=0.2.0`
+/// for the file that loads on Pumpkin 0.2.0.
+#[cfg(feature = "mc263")]
+pub fn api_label() -> String {
+    format!("Pumpkin {} / MC 26.3", option_env!("PUMBO_PUMPKIN").unwrap_or("0.2.1"))
+}
+#[cfg(feature = "mc262")]
+pub fn api_label() -> String {
+    "Pumpkin 0.1.0-dev / MC 26.2".into()
+}
+#[cfg(feature = "mcgit")]
+pub fn api_label() -> String {
+    "Pumpkin source build with the Pumbo hooks (pumbo/all) / MC 26.3".into()
+}
+
 /// Commented `config.yml` written on first start.
 pub const CONFIG_TEMPLATE: &str = include_str!("../assets/config.yml");
 
@@ -126,6 +142,14 @@ mod tests {
         assert_eq!(en.get("prefix"), pumbo_common::style::prefix_code("PumboBans", pumbo_common::style::accent::BANS));
         let reply = pumbo_common::style::error(&en, "error-db", &pumbo_common::text::Args::new());
         assert!(reply.plain().starts_with("PumboBans » The punishment database"), "{}", reply.plain());
+    }
+
+    #[cfg(feature = "mc263")]
+    #[test]
+    fn label() {
+        if option_env!("PUMBO_PUMPKIN").is_none() {
+            assert_eq!(api_label(), "Pumpkin 0.2.1 / MC 26.3");
+        }
     }
 
     #[test]
