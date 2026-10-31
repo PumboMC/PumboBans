@@ -22,7 +22,8 @@ PumboBans is a punishment system for the [Pumpkin](https://github.com/Pumpkin-MC
 
 | File | Pumpkin | Minecraft |
 | --- | --- | --- |
-| `PumboBans-26.3.wasm` | release `0.2.0+26.3-26.51` | 26.3 |
+| `PumboBans-26.3.wasm` | release `0.2.1+26.3-26.51` | 26.3 |
+| `PumboBans-0.2.0.wasm` | release `0.2.0+26.3-26.51` | 26.3 |
 | `PumboBans-26.2.wasm` | release `0.1.0-dev+26.2-26.45` | 26.2 |
 
 Pumpkin checks the plugin API strictly: a file only loads on the server version it was built for.
@@ -40,7 +41,7 @@ The plugin needs the `fs.read.data` and `fs.write.data` permissions of Pumpkin's
 ## Building
 
 ```sh
-./build.sh          # dist/PumboBans-26.3.wasm and dist/PumboBans-26.2.wasm
+./build.sh          # dist/PumboBans-26.3.wasm, dist/PumboBans-0.2.0.wasm and dist/PumboBans-26.2.wasm
 cargo test -p pumbo-bans-core -p pumbo-bans-pumpkin
 ```
 

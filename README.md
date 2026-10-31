@@ -10,7 +10,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-blue" alt="License: GPL-3.0"></a>
   <img src="https://img.shields.io/badge/built%20with-Rust-orange?logo=rust" alt="Built with Rust">
   <img src="https://img.shields.io/badge/plugin-WebAssembly-654FF0?logo=webassembly&logoColor=white" alt="WebAssembly plugin">
-  <a href="https://github.com/Pumpkin-MC/Pumpkin"><img src="https://img.shields.io/badge/Pumpkin-0.2.0%20%2826.3%29-F28C28" alt="Pumpkin 0.2.0 (26.3)"></a>
+  <a href="https://github.com/Pumpkin-MC/Pumpkin"><img src="https://img.shields.io/badge/Pumpkin-0.2.1%20%2826.3%29-F28C28" alt="Pumpkin 0.2.1 (26.3)"></a>
   <a href="https://github.com/Pumpkin-MC/Pumpkin"><img src="https://img.shields.io/badge/Pumpkin-0.1.0--dev%20%2826.2%29-F28C28" alt="Pumpkin 0.1.0-dev (26.2)"></a>
   <a href="https://github.com/PumboMC/PumboProx"><img src="https://img.shields.io/badge/PumboProx-supported-62B47A" alt="PumboProx: supported"></a>
   <img src="https://img.shields.io/badge/status-beta-yellow" alt="Status: beta">
@@ -69,7 +69,7 @@ The punishment rules live in one shared core. You pick the build that fits your 
 | Build | File | Where it goes | What is different |
 | --- | --- | --- | --- |
 | 🌐 **PumboProx** (whole network) | `PumboBans-Proxy-<version>.wasm` | `plugins/` of the proxy | One database for every server. Banned players are refused at the proxy, and a ban disconnects a player from any server. |
-| 🎃 **Pumpkin** (one server) | `PumboBans-Pumpkin-26.3-<version>.wasm` or `PumboBans-Pumpkin-26.2-<version>.wasm` | `plugins/` of the server | Bans, mutes and history for that server. `/ban`, `/kick` and `/banlist` replace the server's own commands. |
+| 🎃 **Pumpkin** (one server) | `PumboBans-Pumpkin-26.3-<version>.wasm` (Pumpkin 0.2.1), `PumboBans-Pumpkin-0.2.0-<version>.wasm` or `PumboBans-Pumpkin-26.2-<version>.wasm` | `plugins/` of the server | Bans, mutes and history for that server. `/ban`, `/kick` and `/banlist` replace the server's own commands. |
 
 ## Installation
 
@@ -172,7 +172,7 @@ rustup target add wasm32-wasip2
 
 Cargo fetches the shared Pumbo libraries (`pumbo-common`, `pumbo-sdk`) from the [PumboProx](https://github.com/PumboMC/PumboProx) repository on the first build.
 
-Pumpkin build, both versions (`plugins/pumbo-bans-pumpkin/dist/PumboBans-26.3.wasm` and `plugins/pumbo-bans-pumpkin/dist/PumboBans-26.2.wasm`):
+Pumpkin build, every version (`PumboBans-26.3.wasm`, `PumboBans-0.2.0.wasm` and `PumboBans-26.2.wasm` in `plugins/pumbo-bans-pumpkin/dist/`):
 
 ```sh
 plugins/pumbo-bans-pumpkin/build.sh
