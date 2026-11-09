@@ -40,6 +40,8 @@ Add `-s` to punish silently and `-f` for players who never joined. `/pb help` sh
 
 Drop the file into `plugins/` and start the server. The config is created in `plugins/data/pumbobans/`. To take over the server's existing bans, run `/pb import vanilla`.
 
+## Pumpkin versions
+
 Each Pumpkin release loads only its own file:
 
 - Pumpkin 0.2.1+26.3-26.51: the file here, or `PumboBans-Pumpkin-26.3-<version>.wasm` from GitHub
