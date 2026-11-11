@@ -41,6 +41,13 @@ fn level(op: u8) -> PermissionLevel {
     }
 }
 
+/// The arguments of a command; they complete on Tab when `suggest` ([`setup::host_suggests`]).
+fn args(label: Option<&'static str>, sub: Option<&'static str>, suggest: bool) -> CommandNode {
+    let node = CommandNode::argument("args", &ArgumentType::String(StringType::Greedy))
+        .execute(commands::Handler { label, sub });
+    if suggest { node.suggest(commands::Suggest { label }) } else { node }
+}
+
 fn register_permissions(context: &Context, nodes: &[String]) {
     for node in nodes {
         let (default, description) = setup::node_info(node);
@@ -102,21 +109,20 @@ impl Plugin for PumboBans {
         register_permissions(&context, &nodes);
 
         let main = main_command();
+        let pumpkin = context.get_server().get_sys_info().pumpkin_version;
+        let suggest = setup::host_suggests(&pumpkin);
+        if !suggest {
+            host::warn(&format!(
+                "PumboBans: no tab completion on Pumpkin {pumpkin}, which crashes when it asks a plugin for one"
+            ));
+        }
         let cmd = Command::new(&[main.clone(), pumbo_bans_core::commands::ALIAS.into()], "PumboBans")
-            .then(
-                CommandNode::argument("args", &ArgumentType::String(StringType::Greedy))
-                    .execute(commands::Handler { label: None, sub: None })
-                    .suggest(commands::Suggest { label: None }),
-            )
+            .then(args(None, None, suggest))
             .execute(commands::Handler { label: None, sub: None });
         context.register_command(cmd, &pumpkin_node(&command_node()));
         for (name, sub) in shortcuts(&disabled) {
             let cmd = Command::new(&[name.to_string()], "PumboBans")
-                .then(
-                    CommandNode::argument("args", &ArgumentType::String(StringType::Greedy))
-                        .execute(commands::Handler { label: Some(name), sub: Some(sub) })
-                        .suggest(commands::Suggest { label: Some(name) }),
-                )
+                .then(args(Some(name), Some(sub), suggest))
                 .execute(commands::Handler { label: Some(name), sub: Some(sub) });
             let node = pumbo_bans_core::commands::tree()
                 .subs()

@@ -82,6 +82,8 @@ Each Pumpkin release loads only its own file:
 
 The files are in the [latest release](https://github.com/PumboMC/PumboBans/releases/latest).
 
+On Pumpkin 0.2.2 the commands have no Tab completion: Pumpkin 0.2.2 crashes when a player asks a plugin for completions. It comes back with a PumboBans update once Pumpkin fixes this.
+
 ## Installation
 
 > [!TIP]

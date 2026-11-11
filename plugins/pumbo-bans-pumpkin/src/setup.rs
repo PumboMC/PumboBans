@@ -29,6 +29,20 @@ pub fn api_label() -> String {
     "Pumpkin source build with the Pumbo hooks (pumbo/all) / MC 26.3".into()
 }
 
+/// Whether the commands may complete on Tab on `pumpkin`, the release that
+/// Pumpkin reports (`0.2.1+26.3-26.51`). Pumpkin 0.2.2 asks a plugin for
+/// suggestions on a thread without its async runtime and crashes, so from 0.2.2
+/// on, and on a release this cannot read, the commands have no suggestions
+/// until a release that asks safely is known.
+pub fn host_suggests(pumpkin: &str) -> bool {
+    let release = pumpkin.split(['+', '-']).next().unwrap_or_default();
+    let mut parts = release.split('.').map(str::parse::<u32>);
+    match (parts.next(), parts.next(), parts.next(), parts.next()) {
+        (Some(Ok(major)), Some(Ok(minor)), Some(Ok(patch)), None) => (major, minor, patch) < (0, 2, 2),
+        _ => false,
+    }
+}
+
 /// Commented `config.yml` written on first start.
 pub const CONFIG_TEMPLATE: &str = include_str!("../assets/config.yml");
 
@@ -149,6 +163,16 @@ mod tests {
     fn label() {
         if option_env!("PUMBO_PUMPKIN").is_none() {
             assert_eq!(api_label(), "Pumpkin 0.2.1 / MC 26.3");
+        }
+    }
+
+    #[test]
+    fn tab_completion_only_on_releases_before_pumpkin_0_2_2() {
+        for on in ["0.2.1+26.3-26.51", "0.2.0+26.3-26.51", "0.1.0-dev+26.2-26.45", "0.2.1"] {
+            assert!(host_suggests(on), "{on}");
+        }
+        for off in ["0.2.2+26.3-26.60", "0.2.2", "0.2.10", "0.3.0", "1.0.0", "", "0.2", "0.2.1.1", "x.y.z"] {
+            assert!(!host_suggests(off), "{off}");
         }
     }
 
