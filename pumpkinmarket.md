@@ -44,11 +44,13 @@ Drop the file into `plugins/` and start the server. The config is created in `pl
 
 Each Pumpkin release loads only its own file:
 
-- Pumpkin 0.2.1+26.3-26.51: the file here, or `PumboBans-Pumpkin-26.3-<version>.wasm` from GitHub
-- Pumpkin 0.2.0+26.3-26.51: `PumboBans-Pumpkin-0.2.0-<version>.wasm` from GitHub
-- Pumpkin 0.1.0-dev+26.2-26.45: `PumboBans-Pumpkin-26.2-<version>.wasm` from GitHub
+- Pumpkin 0.2.1+26.3-26.51 and 0.2.2+26.3-26.60: Market download, or `PumboBans-v<version>-for-Pumpkin-0.2.1-and-0.2.2.wasm` from GitHub
+- Pumpkin 0.2.0+26.3-26.51: `PumboBans-v<version>-for-Pumpkin-0.2.0.wasm` from GitHub
+- Pumpkin 0.1.0-dev+26.2-26.45: `PumboBans-v<version>-for-Pumpkin-0.1.0-dev.wasm` from GitHub
 
 The GitHub files are in the [latest release](https://github.com/PumboMC/PumboBans/releases/latest).
+
+When PumboBans detects Pumpkin 0.2.2, its commands stop suggesting player names, because Pumpkin 0.2.2 crashes when a player asks a plugin for completions. Commands work as before. Suggestions come back with a PumboBans update once Pumpkin ships [a fix](https://github.com/Pumpkin-MC/Pumpkin/pull/4149).
 
 ## Running a network?
 
