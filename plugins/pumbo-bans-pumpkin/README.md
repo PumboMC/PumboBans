@@ -31,12 +31,20 @@ Pumpkin checks the plugin API strictly: a file only loads on the server version 
 ## Installation
 
 1. Put the matching `.wasm` file into the `plugins/` folder of the server.
-2. Start the server. PumboBans writes `plugins/data/pumbobans/config.yml`, `lang/en.yml` and `lang/pl.yml`, and keeps its data in `plugins/data/pumbobans/bans.redb`.
-3. Recommended in `pumpkin.toml`: `allow_chat_reports = false`, so that cancelled chat messages of muted players do not disturb signed chat.
-4. Give your staff permissions (operators get the moderation commands by default, see below).
-5. Optional: `/pumbobans import vanilla` takes over the bans the server already has.
+2. Approve the plugin's sandbox permissions in `pumpkin.toml`. PumboBans needs `fs.read.data` and `fs.write.data` and nothing else (no network):
 
-The plugin needs the `fs.read.data` and `fs.write.data` permissions of Pumpkin's plugin sandbox and nothing else (no network).
+   ```toml
+   [plugins.overrides.pumbobans]
+   allowed_permissions = ["fs.read.data", "fs.write.data"]
+   ```
+
+   Without this, Pumpkin asks in the console on the first start. On a hosting panel there is no terminal to answer, so Pumpkin refuses the permissions and keeps the refusal in `plugins/permission_cache.json`: the plugin does not load, even after a restart. The override also wins over that cached refusal. Write the names with dots: the colon form from Pumpkin's examples never matches.
+3. Start the server. PumboBans writes `plugins/data/pumbobans/config.yml`, `lang/en.yml` and `lang/pl.yml`, and keeps its data in `plugins/data/pumbobans/bans.redb`.
+4. Recommended in `pumpkin.toml`: `allow_chat_reports = false`, so that cancelled chat messages of muted players do not disturb signed chat.
+5. Give your staff permissions (operators get the moderation commands by default, see below).
+6. Optional: `/pumbobans import vanilla` takes over the bans the server already has.
+
+On Pumpkin 0.2.1 typing a plugin command in the server console can crash the server; this is a bug in Pumpkin. Until it is fixed, set `use_tty = false` in `[commands]` of `pumpkin.toml`. The console still takes commands, without Tab completion.
 
 ## Building
 

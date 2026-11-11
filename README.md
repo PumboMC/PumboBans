@@ -103,10 +103,19 @@ The files are in the [latest release](https://github.com/PumboMC/PumboBans/relea
 **On Pumpkin**
 
 1. Put the file that matches your Pumpkin version into the server's `plugins/` folder.
-2. Start the server. The first start creates `plugins/data/pumbobans/config.yml` and the language files.
-3. Operators get the moderation commands by default. To take over the server's existing bans, run `/pumbobans import vanilla`.
+2. **Pumpkin's plugin sandbox.** PumboBans needs `fs.read.data` and `fs.write.data`: it reads and writes only its own data folder and has no network access. Pumpkin asks about them in the console on the first start. On a hosting panel the server runs without a terminal, so Pumpkin cannot ask: it refuses them, keeps the refusal in `plugins/permission_cache.json`, and the plugin does not load, even after a restart. Approve them in `pumpkin.toml`:
 
-The plugin only needs to read and write its own data folder. It has no network access.
+   ```toml
+   [plugins.overrides.pumbobans]
+   allowed_permissions = ["fs.read.data", "fs.write.data"]
+   ```
+
+   This also overrides a refusal in the cache. Write the names with dots: the colon form from Pumpkin's examples never matches.
+3. Start the server. The first start creates `plugins/data/pumbobans/config.yml` and the language files.
+4. Operators get the moderation commands by default. To take over the server's existing bans, run `/pumbobans import vanilla`.
+
+> [!WARNING]
+> On Pumpkin 0.2.1 typing a plugin command in the server console can crash the server. This is a bug in Pumpkin. Until it is fixed, set `use_tty = false` in `[commands]` of `pumpkin.toml`. The console still takes commands, without Tab completion.
 
 ## Configuration
 
