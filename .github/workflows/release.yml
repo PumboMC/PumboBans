@@ -61,14 +61,15 @@ jobs:
           mkdir -p "$out"
           if [ -d plugins/pumbo-bans-prox ]; then
             plugins/pumbo-bans-prox/build.sh
-            cp plugins/pumbo-bans-prox/dist/pumbo-bans.wasm "$out/PumboBans-Proxy-$v.wasm"
+            cp plugins/pumbo-bans-prox/dist/pumbo-bans.wasm "$out/PumboBans-v$v-for-PumboProx.wasm"
           fi
           plugins/pumbo-bans-pumpkin/build.sh
           # Most Pumpkin builds land in dist/ of the workspace, some in their own folder.
           src=dist
           if [ -d plugins/pumbo-bans-pumpkin/dist ]; then src=plugins/pumbo-bans-pumpkin/dist; fi
-          for mc in 26.3 0.2.0 26.2; do
-            cp "$src/PumboBans-$mc.wasm" "$out/PumboBans-Pumpkin-$mc-$v.wasm"
+          # Each file is named after the Pumpkin releases it loads on.
+          for pair in 26.3:0.2.1-and-0.2.2 0.2.0:0.2.0 26.2:0.1.0-dev; do
+            cp "$src/PumboBans-${pair%%:*}.wasm" "$out/PumboBans-v$v-for-Pumpkin-${pair#*:}.wasm"
           done
           cd "$out"
           sha256sum -- *.wasm > SHA256SUMS

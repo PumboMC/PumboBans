@@ -69,16 +69,16 @@ The punishment rules live in one shared core. You pick the build that fits your 
 
 | Build | File | Where it goes | What is different |
 | --- | --- | --- | --- |
-| 🌐 **PumboProx** (whole network) | `PumboBans-Proxy-<version>.wasm` | `plugins/` of the proxy | One database for every server. Banned players are refused at the proxy, and a ban disconnects a player from any server. |
-| 🎃 **Pumpkin** (one server) | `PumboBans-Pumpkin-…-<version>.wasm`, one per [Pumpkin version](#pumpkin-versions) | `plugins/` of the server | Bans, mutes and history for that server. `/ban`, `/kick` and `/banlist` replace the server's own commands. |
+| 🌐 **PumboProx** (whole network) | `PumboBans-v<version>-for-PumboProx.wasm` | `plugins/` of the proxy | One database for every server. Banned players are refused at the proxy, and a ban disconnects a player from any server. |
+| 🎃 **Pumpkin** (one server) | `PumboBans-v<version>-for-Pumpkin-….wasm`, one per [Pumpkin version](#pumpkin-versions) | `plugins/` of the server | Bans, mutes and history for that server. `/ban`, `/kick` and `/banlist` replace the server's own commands. |
 
 ## Pumpkin versions
 
 Each Pumpkin release loads only its own file:
 
-- Pumpkin 0.2.1+26.3-26.51: `PumboBans-Pumpkin-26.3-<version>.wasm`, or the file on the Pumpkin market
-- Pumpkin 0.2.0+26.3-26.51: `PumboBans-Pumpkin-0.2.0-<version>.wasm`
-- Pumpkin 0.1.0-dev+26.2-26.45: `PumboBans-Pumpkin-26.2-<version>.wasm`
+- Pumpkin 0.2.1+26.3-26.51 and 0.2.2+26.3-26.60: `PumboBans-v<version>-for-Pumpkin-0.2.1-and-0.2.2.wasm`, or the file on the Pumpkin market
+- Pumpkin 0.2.0+26.3-26.51: `PumboBans-v<version>-for-Pumpkin-0.2.0.wasm`
+- Pumpkin 0.1.0-dev+26.2-26.45: `PumboBans-v<version>-for-Pumpkin-0.1.0-dev.wasm`
 
 The files are in the [latest release](https://github.com/PumboMC/PumboBans/releases/latest).
 
@@ -91,7 +91,7 @@ On Pumpkin 0.2.2 the commands have no Tab completion: Pumpkin 0.2.2 crashes when
 
 **On PumboProx**
 
-1. Put `PumboBans-Proxy-<version>.wasm` into the proxy's `plugins/` folder.
+1. Put `PumboBans-v<version>-for-PumboProx.wasm` into the proxy's `plugins/` folder.
 2. Start the proxy. The first start creates `plugins/pumbo-bans/config.yml` with comments.
 3. Recommended in `pumboprox.yml`, so nobody joins while PumboBans is not running:
 
