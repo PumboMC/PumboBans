@@ -117,7 +117,7 @@ On Pumpkin 0.2.2 the commands have no Tab completion: Pumpkin 0.2.2 crashes when
 4. Operators get the moderation commands by default. To take over the server's existing bans, run `/pumbobans import vanilla`.
 
 > [!WARNING]
-> On Pumpkin 0.2.1 and 0.2.2 typing a plugin command in the server console can crash the server. This is a bug in Pumpkin. Until it is fixed, set `use_tty = false` in `[commands]` of `pumpkin.toml`. The console still takes commands, without Tab completion.
+> On Pumpkin 0.2.1, 0.2.0 and 0.1.0-dev typing a plugin command in the server console can crash the server. This is a bug in Pumpkin. Until it is fixed, set `use_tty = false` in `[commands]` of `pumpkin.toml`. The console still takes commands, without Tab completion.
 
 ## Configuration
 

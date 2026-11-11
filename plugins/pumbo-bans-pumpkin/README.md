@@ -44,7 +44,7 @@ Pumpkin checks the plugin API strictly: a file only loads on the server version 
 5. Give your staff permissions (operators get the moderation commands by default, see below).
 6. Optional: `/pumbobans import vanilla` takes over the bans the server already has.
 
-On Pumpkin 0.2.1 and 0.2.2 typing a plugin command in the server console can crash the server; this is a bug in Pumpkin. Until it is fixed, set `use_tty = false` in `[commands]` of `pumpkin.toml`. The console still takes commands, without Tab completion.
+On Pumpkin 0.2.1, 0.2.0 and 0.1.0-dev typing a plugin command in the server console can crash the server; this is a bug in Pumpkin. Until it is fixed, set `use_tty = false` in `[commands]` of `pumpkin.toml`. The console still takes commands, without Tab completion.
 
 ## Building
 
