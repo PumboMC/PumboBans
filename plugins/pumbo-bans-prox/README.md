@@ -103,7 +103,7 @@ Commands from the proxy console answer in the proxy log.
 cargo test -p pumbo-bans-prox
 ```
 
-Rust stable with the `wasm32-wasip2` target. The SDK `pumbo-sdk` (MIT OR Apache-2.0) comes from [PumboProx](https://github.com/PumboMC/PumboProx) as a git dependency.
+Rust comes from `rust-toolchain.toml` at the workspace root (rustup installs it with the `wasm32-wasip2` target). The SDK `pumbo-sdk` (MIT OR Apache-2.0) comes from [PumboProx](https://github.com/PumboMC/PumboProx) as a git dependency.
 
 ## License
 

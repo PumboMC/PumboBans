@@ -53,7 +53,7 @@ On Pumpkin 0.2.1, 0.2.0 and 0.1.0-dev typing a plugin command in the server cons
 cargo test -p pumbo-bans-core -p pumbo-bans-pumpkin
 ```
 
-Rust stable with the `wasm32-wasip2` target is required.
+Rust comes from `rust-toolchain.toml` at the workspace root: rustup installs that version and the `wasm32-wasip2` target on the first build.
 
 ## Commands
 
