@@ -34,9 +34,6 @@
 
 <p align="center"><b>Running more than one server?</b> <a href="https://github.com/PumboMC/PumboProx">PumboProx</a> is the proxy for Pumpkin networks, with plugins in WebAssembly.<br>PumboBans runs on it too: one ban covers the whole network, or just the server you name.</p>
 
-> [!NOTE]
-> PumboBans is in **beta** (0.1.4-beta). Try it on a test server before you put players on it.
-
 ## What it does
 
 PumboBans gives your staff bans, mutes, warnings and kicks, with a full history of every punishment. Bans are checked when the player logs in, before they enter the world. On PumboProx one ban covers every server of the network.
