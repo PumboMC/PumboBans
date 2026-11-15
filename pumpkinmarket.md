@@ -1,6 +1,6 @@
-# PumboBans
+Bans, mutes, warnings and kicks for Pumpkin servers, with a full history of every punishment. PumboBans checks bans at login, before the player enters the world.
 
-Bans, mutes, warnings and kicks for Pumpkin servers, with a full history of every punishment. Bans are checked at login, before the player enters the world.
+> PumboBans is still in beta.
 
 ## Features
 
@@ -9,36 +9,45 @@ Bans, mutes, warnings and kicks for Pumpkin servers, with a full history of ever
 - **Mutes** block chat and message commands. The player sees why and stays online.
 - **Warnings** count for 30 days and lead to the next punishment.
 - **Templates and escalation.** `/ban Steve #cheating` picks the reason and a length that grows with every repeat. 3 warnings can bring a mute.
-- **Ban screen** with the reason, the time left, the punishment ID and your appeal link.
 - **Full history** with clickable pages. Nothing is deleted.
 - **Alt accounts** sharing an address, staff limits and exemptions.
 - **Vanilla import** of `banned-players.json` and `banned-ips.json`.
 
+## How it looks
+
+### Warn, mute, kick, ban
+
+Each punishment takes a time and a reason, and gets an ID you can lift it by. Add `-s` to punish silently and `-f` for a player who never joined.
+
+![/warn, /mute, /kick and /ban in chat](assets/market/punish.png)
+
+### The ban screen
+
+A banned player sees the reason, the staff member, the time left and the punishment ID. Your appeal link goes on the same screen.
+
+![The screen a banned player sees](assets/market/ban-screen.png)
+
+### One player at a glance
+
+`/checkban` shows the active ban, the mute and the warnings of a player. `/history` lists every punishment the player ever got.
+
+![/checkban Cayenne](assets/market/check.png)
+
+### Staff history
+
+`/staffhistory` lists the punishments a staff member gave, the newest first.
+
+![/staffhistory Habanero](assets/market/staffhistory.png)
+
 ## Commands
 
-| Command | What it does |
-| --- | --- |
-| `/ban <player> [time] [reason]` | Ban a player |
-| `/ipban <player\|ip> [time] [reason]` | Ban an address |
-| `/mute <player> [time] [reason]` | Mute a player |
-| `/warn <player> [reason]` | Warn a player |
-| `/kick <player> [reason]` | Kick a player |
-| `/unban`, `/unmute`, `/unwarn <player\|#id>` | Lift a punishment |
-| `/history <player\|ip>` | Punishments of a player or an address |
-| `/banlist` / `/mutelist` | Active bans and mutes |
-| `/alts <player>` | Accounts sharing an address |
-| `/pb import vanilla` | Import the server's ban lists |
+`/pb help` lists the commands you may use; click one to type it. `/pb` is short for `/pumbobans`. Permissions are named `pumbobans:<name>` and default to operators. The [command list](https://github.com/PumboMC/PumboBans/blob/main/docs/commands.md) has every argument and permission.
 
-Add `-s` to punish silently and `-f` for players who never joined. `/pb help` shows every command you may use. `/pb` is short for `/pumbobans`. Permissions are named `pumbobans:<name>` and default to operators.
-
-## Screenshots
-
-![/pb help, page 1](assets/market/help-1.webp)
-![/pb help, page 2](assets/market/help-2.webp)
+![/pb help: the punishment commands](assets/market/help.png)
 
 ## Installation
 
-Drop the file into `plugins/` and start the server. The config is created in `plugins/data/pumbobans/`. To take over the server's existing bans, run `/pb import vanilla`.
+Drop the file into `plugins/` and start the server. PumboBans creates its config in `plugins/data/pumbobans/`. To take over the bans your server already has, run `/pb import vanilla`.
 
 ## Pumpkin versions
 
@@ -56,9 +65,15 @@ When PumboBans detects Pumpkin 0.2.2, its commands stop suggesting player names,
 
 PumboBans also runs on [PumboProx](https://github.com/PumboMC/PumboProx): one ban covers the whole network, or only the server you name.
 
----
+## Project Pages
 
-PumboBans is in beta. Try it on a test server before you put players on it.
-Source, documentation and issues: https://github.com/PumboMC/PumboBans (GPL-3.0)
+- [Features](https://github.com/PumboMC/PumboBans/blob/main/docs/features.md)
+- [Installation](https://github.com/PumboMC/PumboBans/blob/main/docs/installation.md)
+- [Configuration](https://github.com/PumboMC/PumboBans/blob/main/docs/configuration.md)
+- [Commands](https://github.com/PumboMC/PumboBans/blob/main/docs/commands.md)
+- [Changelog](https://github.com/PumboMC/PumboBans/blob/main/CHANGELOG.md)
+- [Bug reports](https://github.com/PumboMC/PumboBans/issues)
 
-[![PumboProx: everything you need to run a network on Pumpkin](assets/pumboprox.webp)](https://github.com/PumboMC/PumboProx)
+## License
+
+PumboBans is licensed under the GNU General Public License v3.0. It is not affiliated with Mojang, Microsoft or the Pumpkin project.
